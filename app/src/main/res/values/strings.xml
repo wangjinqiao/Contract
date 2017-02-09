@@ -1,3 +1,21 @@
 <resources>
-    <string name="app_name">My Application26</string>
+    <string name="app_name">易淘0208</string>
+    <string name="shop_main">市场</string>
+    <string name="mes_main">消息</string>
+    <string name="tongxunlu_main">通讯录</string>
+    <string name="my_main">我的</string>
+
+    <string name="my_login_register">登录|注册</string>
+    <string name="my_info">个人信息</string>
+    <string name="my_goods">我的商品</string>
+    <string name="my_upload_goods">上传商品</string>
+
+    <string name="unland">用户未登录，请先登录</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="username">用户名</string>
+    <string name="pswd">密码</string>
+    <string name="fast_register">快速注册</string>
+
+
 </resources>

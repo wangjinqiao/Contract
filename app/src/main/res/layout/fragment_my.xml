@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_200"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.pkmmte.view.CircularImageView
+            android:id="@+id/circle_img_head_icon"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="@dimen/dp_120"
+            android:src="@drawable/user_ico"
+
+            />
+
+        <TextView
+            android:id="@+id/txt_register_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_5"
+            android:text="@string/my_login_register"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_person_info"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginTop="6dp"
+        android:background="@color/colorWhite"
+        android:drawableRight="@drawable/selector_item_go"
+        android:gravity="center|start"
+        android:paddingEnd="@dimen/dp_10"
+        android:paddingStart="@dimen/dp_20"
+        android:text="@string/my_info"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txt_my_goods"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginTop="6dp"
+        android:background="@color/colorWhite"
+        android:drawableRight="@drawable/selector_item_go"
+        android:gravity="center|start"
+        android:paddingEnd="@dimen/dp_10"
+        android:paddingStart="@dimen/dp_20"
+        android:text="@string/my_goods"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txt_my_upload_goods"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginTop="6dp"
+        android:background="@color/colorWhite"
+        android:drawableRight="@drawable/selector_item_go"
+        android:gravity="center|start"
+        android:paddingEnd="@dimen/dp_10"
+        android:paddingStart="@dimen/dp_20"
+        android:text="@string/my_upload_goods"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp" />
+</LinearLayout>
