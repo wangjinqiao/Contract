@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.administrator.myapplication26.entity.HttpResponse;
+import com.example.administrator.myapplication26.entity.HttpResponseRegister;
+import com.example.administrator.myapplication26.net.CallBackUI;
 import com.example.administrator.myapplication26.net.EasyShopClient;
 import com.example.administrator.myapplication26.utils.RegexUtils;
 
@@ -103,17 +106,18 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void visitHttpRegister() {
         //注册
-        EasyShopClient.getInstance().register(username, password).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
+        EasyShopClient.getInstance().register(username, password)
+                .enqueue(new CallBackUI<HttpResponseRegister>() {
+                    @Override
+                    public void onFailureUI(Call call, IOException e) {
+                        Toast.makeText(RegisterActivity.this, "网络连接异常", Toast.LENGTH_SHORT).show();
+                    }
 
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-            }
-        });
+                    @Override
+                    public void onResponseUI(Call call, HttpResponse<HttpResponseRegister> httpResponse) {
+                        Toast.makeText(RegisterActivity.this, "注册成功！" + httpResponse, Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
 

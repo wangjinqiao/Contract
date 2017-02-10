@@ -14,7 +14,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.administrator.myapplication26.entity.HttpResponse;
+import com.example.administrator.myapplication26.entity.HttpResponseLogin;
+import com.example.administrator.myapplication26.net.CallBackUI;
 import com.example.administrator.myapplication26.net.EasyShopClient;
 
 import java.io.IOException;
@@ -71,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                 break;
             case R.id.txt_register_login:
                 //去注册
-                startActivity(new Intent(this,RegisterActivity.class));
+                startActivity(new Intent(this, RegisterActivity.class));
                 break;
         }
     }
@@ -79,17 +83,17 @@ public class LoginActivity extends AppCompatActivity {
     private void visitHttpLogin() {
         EasyShopClient.getInstance().
                 login(username, password).
-                enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
+                enqueue(new CallBackUI<HttpResponseLogin>() {
+                    @Override
+                    public void onFailureUI(Call call, IOException e) {
+                        Toast.makeText(LoginActivity.this, "网络连接异常", Toast.LENGTH_SHORT).show();
+                    }
 
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-            }
-        });
+                    @Override
+                    public void onResponseUI(Call call, HttpResponse<HttpResponseLogin> httpResponse) {
+                        Toast.makeText(LoginActivity.this, "登录成功！" + httpResponse, Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     String username;
