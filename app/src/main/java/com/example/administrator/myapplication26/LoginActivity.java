@@ -91,9 +91,21 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponseUI(Call call, HttpResponse<HttpResponseLogin> httpResponse) {
-                        Toast.makeText(LoginActivity.this, "登录成功！" + httpResponse, Toast.LENGTH_SHORT).show();
+                        if (httpResponse.getCode()==1){
+                            Toast.makeText(LoginActivity.this, "登录成功！" , Toast.LENGTH_SHORT).show();
+                            toShop();
+                        }else{
+                            Toast.makeText(LoginActivity.this,"用户名或密码错误，请重新输入", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
+    }
+
+    private void toShop() {
+        // TODO: 2017/2/10 0010  记录登录信息
+        //跳转到主界面的市场页面
+        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+        finish();
     }
 
     String username;

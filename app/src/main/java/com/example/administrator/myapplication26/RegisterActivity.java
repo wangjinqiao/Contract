@@ -1,5 +1,6 @@
 package com.example.administrator.myapplication26;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.administrator.myapplication26.entity.HttpResponse;
+import com.example.administrator.myapplication26.entity.HttpResponseLogin;
 import com.example.administrator.myapplication26.entity.HttpResponseRegister;
 import com.example.administrator.myapplication26.net.CallBackUI;
 import com.example.administrator.myapplication26.net.EasyShopClient;
@@ -115,11 +117,44 @@ public class RegisterActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponseUI(Call call, HttpResponse<HttpResponseRegister> httpResponse) {
-                        Toast.makeText(RegisterActivity.this, "注册成功！" + httpResponse, Toast.LENGTH_SHORT).show();
+                        if(httpResponse.getCode()==1) {
+                            Toast.makeText(RegisterActivity.this, "注册成功！" , Toast.LENGTH_SHORT).show();
+                            loginning();
+                        }else {
+                            Toast.makeText(RegisterActivity.this, httpResponse.getMsg(), Toast.LENGTH_SHORT).show();
+
+                        }
                     }
                 });
     }
 
+    private void loginning() {
+        //直接进行登录并记录登录信息，然后跳转到主界面的市场页面
+        visitHttpLogin();
+    }
+    private void visitHttpLogin() {
+        EasyShopClient.getInstance().
+                login(username, password).
+                enqueue(new CallBackUI<HttpResponseLogin>() {
+                    @Override
+                    public void onFailureUI(Call call, IOException e) {
+                        Toast.makeText(RegisterActivity.this, "网络连接异常", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponseUI(Call call, HttpResponse<HttpResponseLogin> httpResponse) {
+                        Toast.makeText(RegisterActivity.this, "登录成功！", Toast.LENGTH_SHORT).show();
+                        toShop();
+                    }
+                });
+    }
+
+    private void toShop() {
+        // TODO: 2017/2/10 0010 记录登录信息 
+        //跳转到主界面的市场页面
+        startActivity(new Intent(RegisterActivity.this,MainActivity.class));
+        finish();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
